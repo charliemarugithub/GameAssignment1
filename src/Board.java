@@ -15,15 +15,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	
-	private enum STATE
-	{
-		MENU,
-		GAME
-	};
-	
-	private STATE State = STATE.MENU;
-	
-	private final int B_WIDTH = 300;
+		private final int B_WIDTH = 300;
 	private final int B_HEIGHT = 300;
 	private final int DOT_SIZE = 10;
 	private final int ALL_DOTS = 900;
@@ -99,10 +91,8 @@ public class Board extends JPanel implements ActionListener {
 	}
 	
 	private void doDrawing(Graphics g) {
-		
-		if(State == STATE.GAME)
-		{
-			if (inGame) {
+	
+				if (inGame) {
 				
 				g.drawImage(apple, apple_x, apple_y, this);
 				
@@ -121,7 +111,6 @@ public class Board extends JPanel implements ActionListener {
 				gameOver(g);
 			}
 		}
-	}
 
 	
 	private void gameOver(Graphics g) {
