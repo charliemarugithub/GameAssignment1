@@ -15,6 +15,14 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	
+	private enum STATE
+	{
+		MENU,
+		GAME
+	};
+	
+	private STATE State = STATE.MENU;
+	
 	private final int B_WIDTH = 300;
 	private final int B_HEIGHT = 300;
 	private final int DOT_SIZE = 10;
@@ -92,25 +100,29 @@ public class Board extends JPanel implements ActionListener {
 	
 	private void doDrawing(Graphics g) {
 		
-		if (inGame) {
-			
-			g.drawImage(apple, apple_x, apple_y, this);
-			
-			for (int z = 0; z < dots; z++) {
-				if (z == 0) {
-					g.drawImage(head, x[z], y[z], this);
-				} else {
-					g.drawImage(ball, x[z], y[z], this);
+		if(State == STATE.GAME)
+		{
+			if (inGame) {
+				
+				g.drawImage(apple, apple_x, apple_y, this);
+				
+				for (int z = 0; z < dots; z++) {
+					if (z == 0) {
+						g.drawImage(head, x[z], y[z], this);
+					} else {
+						g.drawImage(ball, x[z], y[z], this);
+					}
 				}
+				
+				Toolkit.getDefaultToolkit().sync();
+				
+			} else {
+				
+				gameOver(g);
 			}
-			
-			Toolkit.getDefaultToolkit().sync();
-			
-		} else {
-			
-			gameOver(g);
 		}
 	}
+
 	
 	private void gameOver(Graphics g) {
 		
